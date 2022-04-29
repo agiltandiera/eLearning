@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudio/Project/Codepolitan/eLearning/app/src/main/res/drawable-xxxhdpi/bg_btn_auth_color_white.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/Project/Codepolitan/eLearning/app/src/main/res/drawable/bg_btn_color_primary.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/Project/Codepolitan/eLearning/app/src/main/res/drawable/bg_edit_text.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/Project/Codepolitan/eLearning/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/AndroidStudio/Project/Codepolitan/eLearning/app/src/main/res/layout/activity_splash.xml" value="0.13333333333333333" />
       </map>
     </option>
