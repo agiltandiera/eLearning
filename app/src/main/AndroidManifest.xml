@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ELearning">
         <activity
+            android:name=".presentation.splash.SplashActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true">
             <intent-filter>
