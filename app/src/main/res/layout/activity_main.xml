@@ -64,6 +64,44 @@
                 android:layout_marginTop="@dimen/normal_150"
                 app:layout_constraintTop_toBottomOf="@id/iv_avatar_main"/>
 
+            <EditText
+                android:id="@+id/et_search_main"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edot_text_search_height"
+                android:layout_marginTop="@dimen/large_125"
+                android:layout_marginStart="@dimen/normal_100"
+                android:layout_marginEnd="@dimen/normal_100"
+                app:layout_constraintTop_toBottomOf="@id/tv_tag_line"
+                android:elevation="@dimen/small_50"
+                android:drawableEnd="@drawable/ic_baseline_search_24"
+                android:drawableTint="@android:color/darker_gray"
+                android:paddingStart="@dimen/normal_100"
+                android:paddingEnd="@dimen/normal_100"
+                android:hint="Search..."
+                android:background="@drawable/bg_edit_text_search" />
+
+            <TextView
+                android:id="@+id/tv_your_materials"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/your_materials"
+                android:textSize="@dimen/h6"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/normal_100"
+                android:layout_marginTop="@dimen/large_100"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_search_main"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_materials_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/small_100"
+                android:layout_marginTop="@dimen/small_50"
+                android:clipToPadding="false"
+                app:layout_constraintTop_toBottomOf="@id/tv_your_materials"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
