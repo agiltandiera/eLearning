@@ -8,4 +8,7 @@
     <string name="register">Register</string>
     <string name="name">Name</string>
     <string name="change_password">Change Password</string>
+    <string name="welcome_home">Welcome, home</string>
+    <string name="default_text">-</string>
+    <string name="tag_line">Panduan Belajar Dasar-dasar Javascript</string>
 </resources>
