@@ -14,4 +14,7 @@
     <string name="your_materials">Your Materials</string>
     <string name="logout">Logout</string>
     <string name="change_language">Change Language</string>
+    <string name="error">Error</string>
+    <string name="success">Success</string>
+    <string name="loading">Loading..</string>
 </resources>
