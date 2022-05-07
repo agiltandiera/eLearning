@@ -12,4 +12,6 @@
     <string name="default_text">-</string>
     <string name="tag_line">Panduan Belajar Dasar-dasar Javascript</string>
     <string name="your_materials">Your Materials</string>
+    <string name="logout">Logout</string>
+    <string name="change_language">Change Language</string>
 </resources>
