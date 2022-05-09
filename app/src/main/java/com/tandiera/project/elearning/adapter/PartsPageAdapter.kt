@@ -4,6 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.tiagohm.markdownview.MarkdownView
+import br.tiagohm.markdownview.css.styles.Github
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.tandiera.project.elearning.databinding.LayoutMarkdownBinding
 import com.tandiera.project.elearning.databinding.LayoutYoutubeBinding
@@ -24,11 +27,28 @@ class PartsPageAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             notifyDataSetChanged()
         }
 
-    class YouTubeViewHolder(youtubeBinding: LayoutYoutubeBinding) : RecyclerView.ViewHolder(youtubeBinding.root) {
+    class YouTubeViewHolder(private val youtubeBinding: LayoutYoutubeBinding) : RecyclerView.ViewHolder(youtubeBinding.root) {
+        fun bindItem(partPage: PartsPage) {
+            youtubeBinding.ytContent.addYouTubePlayerListener(object: AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    super.onReady(youTubePlayer)
+                    youTubePlayer.cueVideo(partPage.content.toString(), 0F)
+                }
+            })
+        }
 
     }
 
-    class MarkdownViewHolder(markdownBinding: LayoutMarkdownBinding) : RecyclerView.ViewHolder(markdownBinding.root) {
+    class MarkdownViewHolder(private val markdownBinding: LayoutMarkdownBinding) : RecyclerView.ViewHolder(markdownBinding.root) {
+        fun bindItem(partPage: PartsPage) {
+            val css = Github()
+            css.addRule("body", "color: black",
+                "font-family: sans-serif",
+                "padding: 0px",
+                "background-color: #fafafa")
+            markdownBinding.mdContent.addStyleSheet(css)
+            markdownBinding.mdContent.loadMarkdown(partPage.content)
+        }
 
     }
 
@@ -52,7 +72,11 @@ class PartsPageAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val partPage = partsPage[position]
+        when(getItemViewType(position)) {
+            TYPE_YOUTUBE -> (holder as YouTubeViewHolder).bindItem(partPage)
+            TYPE_MARKDOWN -> (holder as MarkdownViewHolder).bindItem(partPage)
+        }
     }
 
     override fun getItemCount(): Int {
