@@ -16,6 +16,10 @@ import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        const val EXTRA_POSITION = "extra_position"
+    }
+
     private lateinit var binding : ActivityMainBinding
     private lateinit var materialsAdapter: MaterialsAdapter
 
@@ -30,6 +34,14 @@ class MainActivity : AppCompatActivity() {
         getDataMaterial()
 
         onAction()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(intent != null) {
+            val position = intent.getIntExtra(EXTRA_POSITION, 0)
+            binding.rvMaterialsMain.smoothScrollToPosition(position)
+        }
     }
 
     private fun getDataMaterial() {
