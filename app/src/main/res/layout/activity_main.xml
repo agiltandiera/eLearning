@@ -78,6 +78,8 @@
                 android:paddingStart="@dimen/normal_100"
                 android:paddingEnd="@dimen/normal_100"
                 android:hint="Search..."
+                android:inputType="text"
+                android:imeOptions="actionSearch"
                 android:background="@drawable/bg_edit_text_search" />
 
             <TextView
