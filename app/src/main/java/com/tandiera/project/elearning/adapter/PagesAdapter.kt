@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import com.tandiera.project.elearning.databinding.ItemPageBinding
 import com.tandiera.project.elearning.model.Page
+import com.tandiera.project.elearning.model.PartsPage
 
 class PagesAdapter(private val context: Context) : PagerAdapter() {
 
@@ -32,8 +33,10 @@ class PagesAdapter(private val context: Context) : PagerAdapter() {
     }
 
     private fun bindItem(pageBinding: ItemPageBinding, page: Page) {
+        val partsPageAdapter = PartsPageAdapter()
         pageBinding.rvPage.setHasFixedSize(true)
-        //pageBinding.rvPage.adapter
+        partsPageAdapter.partsPage = page.partsPage as MutableList<PartsPage>
+        pageBinding.rvPage.adapter = partsPageAdapter
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {

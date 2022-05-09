@@ -63,7 +63,6 @@ class MaterialsAdapter : RecyclerView.Adapter<MaterialsAdapter.Viewholder>(), Fi
                 }
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
@@ -81,4 +80,8 @@ class MaterialsAdapter : RecyclerView.Adapter<MaterialsAdapter.Viewholder>(), Fi
     }
 
     override fun getFilter(): Filter = filters
+
+    fun onClick(listener: ((Material, Int) -> Unit)? = null) {
+        this.listener = listener
+    }
 }
