@@ -9,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import com.tandiera.project.elearning.R
 import com.tandiera.project.elearning.adapter.MaterialsAdapter
 import com.tandiera.project.elearning.databinding.ActivityMainBinding
+import com.tandiera.project.elearning.presentation.content.ContentActivity
 import com.tandiera.project.elearning.presentation.user.UserActivity
 import com.tandiera.project.elearning.repository.Repository
 import org.jetbrains.anko.startActivity
@@ -76,6 +77,12 @@ class MainActivity : AppCompatActivity() {
             swipeMain.setOnRefreshListener {
                 getDataMaterial()
             }
+        }
+
+        materialsAdapter.onClick { material , position ->
+            startActivity<ContentActivity>()
+            ContentActivity.EXTRA_MATERIAL to material
+            ContentActivity.EXTRA_POSITION to position
         }
     }
 }
