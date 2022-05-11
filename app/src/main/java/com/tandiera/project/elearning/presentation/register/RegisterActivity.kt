@@ -33,7 +33,7 @@ class RegisterActivity : AppCompatActivity() {
         // Init
         firebaseAuth = FirebaseAuth.getInstance()
         userDatabase = FirebaseDatabase.getInstance().getReference()
-//        dialogLoading = showDialogLoading(this)
+        dialogLoading = showDialogLoading(this)
         onAction()
     }
 

@@ -29,7 +29,7 @@ class ChangePasswordActivity : AppCompatActivity() {
 
         // Init
         currentUser = FirebaseAuth.getInstance().currentUser
-//        dialogLoading = showDialogLoading(this)
+        dialogLoading = showDialogLoading(this)
         onAction()
     }
 

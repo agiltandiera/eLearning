@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
-import androidx.core.view.isInvisible
 import androidx.viewpager.widget.ViewPager
 import com.google.firebase.database.*
 import com.google.gson.Gson

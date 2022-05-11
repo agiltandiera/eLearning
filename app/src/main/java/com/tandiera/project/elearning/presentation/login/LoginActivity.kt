@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Init
         firebaseAuth = FirebaseAuth.getInstance()
-//        dialogloading = showDialogLoading(this)
+        dialogloading = showDialogLoading(this)
         onAction()
     }
 

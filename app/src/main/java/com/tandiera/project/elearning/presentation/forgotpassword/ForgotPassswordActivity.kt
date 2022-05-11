@@ -29,7 +29,7 @@ class ForgotPassswordActivity : AppCompatActivity() {
 
         // Init
         firebaseAuth = FirebaseAuth.getInstance()
-//        dialogLoading = showDialogLoading(this)
+        dialogLoading = showDialogLoading(this)
         onAction()
     }
 
