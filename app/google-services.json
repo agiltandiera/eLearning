@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "249235663613",
+    "project_id": "elearning-f394d",
+    "storage_bucket": "elearning-f394d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249235663613:android:88610c4e6cf8942d23ac94",
+        "android_client_info": {
+          "package_name": "com.tandiera.project.elearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249235663613-1bokeq9q9nbhk80nvsennf1d4c4ue4na.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9SIiNyK41PifwM9l5H0w31vXhkJfiNa0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249235663613-1bokeq9q9nbhk80nvsennf1d4c4ue4na.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
