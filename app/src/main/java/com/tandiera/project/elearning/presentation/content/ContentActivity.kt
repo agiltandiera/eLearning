@@ -7,17 +7,18 @@ import android.os.Looper
 import android.widget.Toast
 import androidx.core.view.isInvisible
 import androidx.viewpager.widget.ViewPager
+import com.google.firebase.database.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.tandiera.project.elearning.adapter.PagesAdapter
 import com.tandiera.project.elearning.databinding.ActivityContentBinding
+import com.tandiera.project.elearning.model.Content
 import com.tandiera.project.elearning.model.Material
 import com.tandiera.project.elearning.model.Page
 import com.tandiera.project.elearning.presentation.content.ContentActivity.Companion.EXTRA_POSITION
 import com.tandiera.project.elearning.presentation.main.MainActivity
 import com.tandiera.project.elearning.repository.Repository
-import com.tandiera.project.elearning.utils.disabled
-import com.tandiera.project.elearning.utils.enabled
-import com.tandiera.project.elearning.utils.invisible
-import com.tandiera.project.elearning.utils.visible
+import com.tandiera.project.elearning.utils.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
@@ -30,8 +31,43 @@ class ContentActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityContentBinding
     private lateinit var pagesAdapter: PagesAdapter
+    private lateinit var contentDatabase : DatabaseReference
     private var currentPosition = 0
     private var materialPosition = 0
+
+    private var listenerContent = object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            hideLoading()
+            if(snapshot.value != null) {
+                showData()
+                val json = Gson().toJson(snapshot.value)
+                val content = Gson().fromJson(json, Content::class.java)
+                pagesAdapter.pages = content?.pages as MutableList<Page>
+            } else {
+                showEmptyData()
+            }
+        }
+
+        private fun showEmptyData() {
+            binding.apply {
+                ivEmptyData.visible()
+                vpContent.gone()
+            }
+        }
+
+        private fun showData() {
+            binding.apply {
+                ivEmptyData.invisible()
+                vpContent.visible()
+            }
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            hideLoading()
+            showDialogError(this@ContentActivity, error.message)
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +76,8 @@ class ContentActivity : AppCompatActivity() {
 
         //Init
         pagesAdapter = PagesAdapter(this)
+        contentDatabase = FirebaseDatabase.getInstance().getReference("contents")
+
         getDataIntent()
         onAction()
         viewPagerCurrentPosition()
@@ -87,19 +125,17 @@ class ContentActivity : AppCompatActivity() {
 
     private fun getDataContent(material: Material) {
         showLoading()
-        val content = material.idMaterial?.let { Repository.getContents(this)?.get(it) }
+//        val content = material.idMaterial?.let { Repository.getContents(this)?.get(it) }
+        contentDatabase
+            .child(material.idMaterial.toString())
+            .addValueEventListener(listenerContent)
 
-        Handler(Looper.getMainLooper())
-            .postDelayed( {
-                hideLoading()
-                pagesAdapter.pages = content?.pages as MutableList<Page>
-                binding.vpContent.adapter = pagesAdapter
-                binding.vpContent.setPagingEnabled(false)
+        binding.vpContent.adapter = pagesAdapter
+        binding.vpContent.setPagingEnabled(false)
 
-                //Init untuk tampilan awal  index
-                val textIndex = "${currentPosition + 1} / ${pagesAdapter.count}"
-                binding.tvIndexContent.text = textIndex
-            }, 1200)
+        //Init untuk tampilan awal  index
+        val textIndex = "${currentPosition + 1} / ${pagesAdapter.count}"
+        binding.tvIndexContent.text = textIndex
     }
 
     private fun showLoading() {
